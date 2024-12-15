@@ -45,12 +45,11 @@ else
 OBJ += $(MANDATORY_OBJ)
 endif
 
-# Use libft.a
-INCLUDE = -L ./libft -lft
-
-# Compielr & flags
+# Compile
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
+LIBFT_LIB = -L ./libft -lft
+MLX_LIB = -lmlx_Linux -lXext -lX11
 
 # Commands
 RM = rm -f
@@ -64,11 +63,11 @@ bonus:
 
 $(NAME): $(OBJ)
 	@make libft.a -C $(LIBFT_DIR)
-	$(CC) $(CFLAGS) $(OBJ) -I$(INC_DIR) -o $@ $(INCLUDE)
+	$(CC) $(CFLAGS) $(OBJ) -I$(INC_DIR) -o $@ $(LIBFT_LIB) $(MLX_LIB)
 
 $(BONUS_NAME): $(OBJ)
 	@make libft.a -C $(LIBFT_DIR)
-	$(CC) $(CFLAGS) $(OBJ) -I$(INC_DIR) -o $@ $(INCLUDE)
+	$(CC) $(CFLAGS) $(OBJ) -I$(INC_DIR) -o $@ $(LIBFT_LIB) $(MLX_LIB)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INC)
 	@mkdir -p $(@D)
