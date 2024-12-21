@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 19:03:17 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/11/24 19:06:04 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/20 14:58:03 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ ssize_t	find_eol(char *str)
 	str_s = str;
 	if (str == NULL)
 		return (-1);
-	while (*str != EOB)
+	while ((signed char)*str != EOB)
 	{
 		if (*str == '\n')
 			return (str - str_s);
@@ -79,7 +79,7 @@ char	*gnl_split(t_fd *f_p)
 	char	*after_eol;
 	size_t	after_eol_len;
 
-	if (f_p->leftover[f_p->lo_eol_i + 1] == EOB)
+	if ((signed char)f_p->leftover[f_p->lo_eol_i + 1] == EOB)
 		return (gnl_free(f_p, NULL, f_p->leftover));
 	line = (char *)malloc((f_p->lo_eol_i + 2));
 	if (line == NULL)
