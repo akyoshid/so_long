@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 19:03:17 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/20 14:58:03 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/22 00:22:16 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ char	*gnl_split(t_fd *f_p)
 	return (line);
 }
 
-char	*get_next_line_core(int fd, t_fd *f, int *error_code)
+char	*get_next_line_core(int fd, t_fd *f, int *return_code)
 {
 	while (1)
 	{
@@ -112,12 +112,12 @@ char	*get_next_line_core(int fd, t_fd *f, int *error_code)
 		f->rb_len = read(fd, f->readbuff, BUFFER_SIZE);
 		if (f->rb_len == -1)
 		{
-			*error_code = 1;
+			*return_code = 4;
 			return (gnl_free(f, &f->readbuff, NULL));
 		}
 		if (f->rb_len == 0 && f->leftover == NULL)
 		{
-			*error_code = 2;
+			*return_code = 0;
 			return (gnl_free(f, &f->readbuff, NULL));
 		}
 		else if (f->rb_len == 0 && f->leftover != NULL)
@@ -139,20 +139,25 @@ char	*get_next_line_core(int fd, t_fd *f, int *error_code)
 // 3. If there is no '\n', read from fd.
 // 4. If there is nothing else to read, return leftover.
 // 5. Join readbuff with leftover & go back to step 1.
-// ### ERROR CODE (Only vaild if this function returns NULL.)
-// 0. Failuare of malloc()
-// 1. Failuare of read()
-// 2. There is no line to return
-char	*get_next_line(int fd, int *error_code)
+// ### RETURN_CODE (Only vaild if this function returns NULL.)
+// 0. Success! There is no line to read() & return.
+// 1. BUFFER_SIZE is invalid. (BUFFER_SIZE <= 0)
+// 2. fd is invalid. (fd < 0)
+// 3. (Default Value) malloc() failed.
+// 4. read() failed.
+char	*get_next_line(int fd, int *return_code)
 {
 	static t_fd	f_lst;
 	t_fd		*f;
 
+	*return_code = 3;
 	if (BUFFER_SIZE <= 0)
+	{
+		*return_code = 1;
 		return (NULL);
-	f = get_fd_node(&f_lst, fd);
+	}
+	f = get_fd_node(&f_lst, fd, return_code);
 	if (f == NULL)
 		return (NULL);
-	*error_code = 0;
-	return (get_next_line_core(fd, f, error_code));
+	return (get_next_line_core(fd, f, return_code));
 }

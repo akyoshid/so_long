@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 19:03:37 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/11/23 21:29:31 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/22 00:08:55 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	delete_fd_node(t_fd *f_p)
 	(f_p->prev)->next = f_p->next;
 	if (f_p->next != NULL)
 		(f_p->next)->prev = f_p->prev;
-	free (f_p);
+	free(f_p);
 	f_p = NULL;
 }
 
@@ -89,12 +89,15 @@ t_fd	*new_fd_node(t_fd *last_node, int fd)
 // - If no node match fd & malloc() in new_fd_node() fail, return NULL.
 // ### DESCRIPTION
 // - The argument `lst` is guaranteed to be not NULL.
-t_fd	*get_fd_node(t_fd *lst, int fd)
+t_fd	*get_fd_node(t_fd *lst, int fd, int *return_code)
 {
 	t_fd	*last_node;
 
 	if (fd < 0)
+	{
+		*return_code = 2;
 		return (NULL);
+	}
 	while (lst != NULL)
 	{
 		if (lst->fd == fd)
