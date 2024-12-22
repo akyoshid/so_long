@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 19:03:37 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/22 00:08:55 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/22 02:41:16 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ t_fd	*get_fd_node(t_fd *lst, int fd, int *return_code)
 
 	if (fd < 0)
 	{
-		*return_code = 2;
+		*return_code = GNL_FAILURE_FD;
 		return (NULL);
 	}
 	while (lst != NULL)

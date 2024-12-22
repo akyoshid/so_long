@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 19:03:54 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/22 00:22:36 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/22 02:51:18 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@
 # ifndef EOB
 #  define EOB -1
 # endif
+
+# define GNL_SUCCESS_FIN 0
+# define GNL_FAILURE_BUFFER_SIZE 1
+# define GNL_FAILURE_FD 2
+# define GNL_FAILURE_MALLOC 3
+# define GNL_FAILURE_READ 4
 
 typedef struct s_fd
 {
