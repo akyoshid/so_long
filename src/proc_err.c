@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 04:17:26 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/23 09:00:30 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/23 16:17:54 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,7 @@ void	proc_err(int err_code, void *param)
 		perror("open");
 	else if (err_code == SL_ERR_MAP)
 		ft_fprintf(STDERR_FILENO, "%s", (char *)param);
+	else if (err_code == SL_ERR_MALLOC)
+			perror("malloc");
 	exit(EXIT_FAILURE);
 }

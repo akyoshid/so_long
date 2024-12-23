@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 15:24:44 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/23 09:53:55 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/23 16:18:05 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdio.h>
 # include <string.h>
 # include <math.h>
+# include <stdbool.h>
 # include "../libft/inc/libft.h"
 # include "../libft/inc/ft_printf.h"
 # include "../libft/inc/get_next_line_bonus.h"
@@ -27,6 +28,7 @@
 # define SL_ERR_FILE_EXT 1
 # define SL_ERR_OPEN 2
 # define SL_ERR_MAP 3
+# define SL_ERR_MALLOC 4
 
 typedef struct s_map
 {
