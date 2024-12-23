@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 04:19:41 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/23 04:20:59 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/23 04:44:56 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	free_map(char **map)
 void	proc_gnl_err(char **map, int return_code)
 {
 	free_map(map);
+	ft_fprintf(STDERR_FILENO, "Error\n");
 	if (return_code == GNL_FAILURE_BUFFER_SIZE)
 		ft_fprintf(STDERR_FILENO, "get_next_line: Invalid BUFFER_SIZE\n");
 	else if (return_code == GNL_FAILURE_FD)
