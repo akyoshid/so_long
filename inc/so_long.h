@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 15:24:44 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/23 04:31:14 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/23 05:13:15 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ typedef struct s_map
 	int		r_y;
 }			t_map;
 
-// open_map.c
+// open_map_file.c
 int	open_map_file(char *map_file);
 // proc_err.c
 void	proc_err(int err_code, void *param);
-// read_map.c
+// read_map_file.c
 void	free_map(char **map);
 void	proc_gnl_err(char **map, int return_code);
 void	map_cpy(char **dst, char **src, int n);
