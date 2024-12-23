@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 17:22:21 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/23 01:22:07 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/23 02:46:25 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ int	ft_printf(const char *fmt, ...)
 				fmt++;
 			if (*fmt == '\0')
 				return (-1);
-			ft_print_varg(1, *fmt++, &ap, &count);
+			ft_print_varg(STDOUT_FILENO, *fmt++, &ap, &count);
 		}
 		else
-			ft_print_char(1, *fmt++, &count);
+			ft_print_char(STDOUT_FILENO, *fmt++, &count);
 		if (count == -1)
 			return (-1);
 	}
