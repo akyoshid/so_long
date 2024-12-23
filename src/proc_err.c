@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 04:17:26 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/23 04:45:07 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/23 09:00:30 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	proc_err(int err_code, void *param)
 			"check_file_ext: Invalid filename extention: Expected .ber\n");
 	else if (err_code == SL_ERR_OPEN)
 		perror("open");
-	(void)param;
+	else if (err_code == SL_ERR_MAP)
+		ft_fprintf(STDERR_FILENO, "%s", (char *)param);
 	exit(EXIT_FAILURE);
 }
