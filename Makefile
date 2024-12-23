@@ -1,6 +1,6 @@
 # Program name
-NAME =			push_swap
-BONUS_NAME =	checker
+NAME =			so_long
+BONUS_NAME =	so_long_bonus
 
 # Directories
 INC_DIR =	inc/
@@ -9,30 +9,15 @@ OBJ_DIR =	obj/
 LIBFT_DIR =	libft/
 
 # Header files
-INC =				$(INC_DIR)push_swap.h
+INC =				$(INC_DIR)so_long.h
 
 # Source files
 SRC = \
-					$(SRC_DIR)exit_func.c \
-					$(SRC_DIR)free_func.c \
-					$(SRC_DIR)ft_atol.c \
-					$(SRC_DIR)init_stack_a.c \
-					$(SRC_DIR)ops_list_create.c \
-					$(SRC_DIR)ops_list_exec.c \
-					$(SRC_DIR)ops_push.c \
-					$(SRC_DIR)ops_rotate.c \
-					$(SRC_DIR)ops_rvs_rotate.c \
-					$(SRC_DIR)ops_swap.c \
-					$(SRC_DIR)opss_exec_utils.c \
-					$(SRC_DIR)opss_exec.c \
-					$(SRC_DIR)opss_prep.c \
-					$(SRC_DIR)proc_arg.c \
-					$(SRC_DIR)sort_gt_three.c \
-					$(SRC_DIR)sort_three.c \
-					$(SRC_DIR)stack_find.c \
-					$(SRC_DIR)stack_utils.c 
-MANDATORY_MAIN =	$(SRC_DIR)push_swap.c
-BONUS_MAIN =		$(SRC_DIR)checker.c
+					$(SRC_DIR)open_map.c \
+					$(SRC_DIR)proc_err.c \
+					$(SRC_DIR)read_map.c 
+MANDATORY_MAIN =	$(SRC_DIR)so_long.c
+BONUS_MAIN =		$(SRC_DIR)so_long_bonus.c
 
 # Generate the list of object files in OBJ_DIR from source files in SRC_DIR
 OBJ =				$(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRC))
