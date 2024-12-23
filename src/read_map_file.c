@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 04:19:41 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/23 05:12:51 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/23 06:54:11 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,26 +67,30 @@ char	**malloc_new_map(char **map, int line, int secured_line)
 	return (new_map);
 }
 
-char	**read_map_file(int fd, char **map, int line, int secured_line)
+void	read_map_file(int fd, t_map *map_data)
 {
+	int	line;
+	int	secured_line;
 	int	gnl_return_code;
 
+	line = 0;
+	secured_line = 64;
 	while (1)
 	{
-		map = malloc_new_map(map, line, secured_line);
+		map_data->map = malloc_new_map(map_data->map, line, secured_line);
 		while (line < secured_line)
 		{
-			map[line] = get_next_line(fd, &gnl_return_code);
-			if (map[line] == NULL)
+			map_data->map[line] = get_next_line(fd, &gnl_return_code);
+			if (map_data->map[line] == NULL)
 				break ;
 			line++;
 		}
-		if (line < secured_line && map[line] == NULL)
+		if (line < secured_line && map_data->map[line] == NULL)
 			break ;
-		map[line] = NULL;
+		map_data->map[line] = NULL;
 		secured_line += 64;
 	}
 	if (gnl_return_code != GNL_SUCCESS_FIN)
-		proc_gnl_err(map, gnl_return_code);
-	return (map);
+		proc_gnl_err(map_data->map, gnl_return_code);
+	map_data->y_count = line;
 }

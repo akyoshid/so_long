@@ -55,6 +55,6 @@ void	free_map(char **map);
 void	proc_gnl_err(char **map, int return_code);
 void	map_cpy(char **dst, char **src, int n);
 char	**malloc_new_map(char **map, int line, int secured_line);
-char	**read_map_file(int fd, char **map, int line, int secured_line);
+void	read_map_file(int fd, t_map *map_data);
 
 #endif

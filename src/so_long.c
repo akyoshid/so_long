@@ -17,10 +17,9 @@ int	main(int argc, char *argv[])
 	int		fd;
 	t_map	map_data;
 
-	if (argc != 2)
-		proc_err(SL_ERR_NUM_OF_ARG, NULL);
+	check_arg(argc, argv[1]);
 	fd = open_map_file(argv[1]);
-	map_data.map = read_map_file(fd, NULL, 0, 64);
+	read_map_file(fd, &map_data);
 	free_map(map_data.map);
 	return (0);
 }
