@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 09:16:59 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/22 09:42:19 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/23 02:50:16 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 void	proc_err(int err_code, void *param)
 {
 	if (err_code == 0)
-		ft_printf("main: Invalid number of arguments: Expected 2 arguments\n");
+		ft_fprintf(STDERR_FILENO,
+			"main: Invalid number of arguments: Expected 2 arguments\n");
 	if (err_code == 1)
 		perror("open");
 	if (err_code == 2)
@@ -46,9 +47,9 @@ void	proc_gnl_err(char **map, int return_code)
 {
 	free_map(map);
 	if (return_code == GNL_FAILURE_BUFFER_SIZE)
-		ft_printf("get_next_line: Invalid BUFFER_SIZE\n");
+		ft_fprintf(STDERR_FILENO, "get_next_line: Invalid BUFFER_SIZE\n");
 	else if (return_code == GNL_FAILURE_FD)
-		ft_printf("get_next_line: Invalid fd\n");
+		ft_fprintf(STDERR_FILENO, "get_next_line: Invalid fd\n");
 	else if (return_code == GNL_FAILURE_MALLOC)
 		perror("malloc");
 	else if (return_code == GNL_FAILURE_READ)
