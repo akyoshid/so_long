@@ -23,8 +23,9 @@
 # include "../libft/inc/ft_printf.h"
 # include "../libft/inc/get_next_line_bonus.h"
 
-#define SL_ERR_NUM_OF_ARG 0
-#define SL_ERR_OPEN 1
+# define SL_ERR_NUM_OF_ARG 0
+# define SL_ERR_FILE_EXT 1
+# define SL_ERR_OPEN 2
 
 typedef struct s_map
 {
@@ -41,6 +42,10 @@ typedef struct s_map
 	int		r_y;
 }			t_map;
 
+// check_arg.c
+void	check_argc(int argc);
+void	check_file_ext(char *map_file);
+void	check_arg(int argc, char *map_file);
 // open_map_file.c
 int	open_map_file(char *map_file);
 // proc_err.c

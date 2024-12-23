@@ -13,9 +13,10 @@ INC =				$(INC_DIR)so_long.h
 
 # Source files
 SRC = \
-					$(SRC_DIR)open_map.c \
+					$(SRC_DIR)check_arg.c \
+					$(SRC_DIR)open_map_file.c \
 					$(SRC_DIR)proc_err.c \
-					$(SRC_DIR)read_map.c 
+					$(SRC_DIR)read_map_file.c 
 MANDATORY_MAIN =	$(SRC_DIR)so_long.c
 BONUS_MAIN =		$(SRC_DIR)so_long_bonus.c
 
