@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:45:52 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/24 15:46:55 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/24 16:01:06 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 int	check_tile_e(char **map_cpy, int x, int y, int *count)
 {
-	if (map_cpy[y][x]  == 'E')
+	if (map_cpy[y][x] == 'E')
 	{
-		map_cpy[y][x]  = 'v';
+		map_cpy[y][x] = 'v';
 		(*count)++;
 		return (0);
 	}
-	if (map_cpy[y][x]  == 'V')
+	if (map_cpy[y][x] == 'V')
 	{
-		map_cpy[y][x]  = 'v';
+		map_cpy[y][x] = 'v';
 		return (1);
 	}
 	return (0);
