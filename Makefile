@@ -16,6 +16,8 @@ SRC = \
 					$(SRC_DIR)check_arg.c \
 					$(SRC_DIR)check_compo.c \
 					$(SRC_DIR)check_map.c \
+					$(SRC_DIR)check_path_c.c \
+					$(SRC_DIR)check_path_e.c \
 					$(SRC_DIR)map_utils.c \
 					$(SRC_DIR)open_map_file.c \
 					$(SRC_DIR)proc_err.c \

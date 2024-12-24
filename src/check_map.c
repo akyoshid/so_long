@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 09:49:37 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/24 15:39:30 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/24 15:47:32 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,38 @@ void	check_wall(t_map *map_data)
 				"check_map: The map is not surrounded by walls\n");
 		i++;
 	}
+}
+
+char	**cpy_map(t_map *map_data)
+{
+	char	**temp;
+	int		i;
+
+	temp = (char **)malloc(sizeof(char *) * (map_data->y_count + 1));
+	if (temp == NULL)
+		proc_map_err(map_data->map, NULL, SL_ERR_MALLOC, NULL);
+	i = 0;
+	while (i < map_data->y_count)
+	{
+		temp[i] = (char *)malloc(sizeof(char) * (map_data->x_count + 1));
+		if (temp[i] == NULL)
+			proc_map_err(map_data->map, temp, SL_ERR_MALLOC, NULL);
+		ft_strlcpy(temp[i], map_data->map[i], map_data->x_count + 1);
+		i++;
+	}
+	temp[i] = NULL;
+	return (temp);
+}
+
+void	check_map(t_map *map_data)
+{
+	char	**map_cpy;
+
+	check_rectangular(map_data);
+	check_wall(map_data);
+	check_component(map_data);
+	map_cpy = cpy_map(map_data);
+	check_path_c(map_data, map_cpy);
+	check_path_e(map_data, map_cpy);
+	free_map(map_cpy);
 }
