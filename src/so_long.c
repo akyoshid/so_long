@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 09:16:59 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/23 17:53:29 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/24 15:40:38 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,13 @@ char	**cpy_map(t_map *map_data)
 
 	temp = (char **)malloc(sizeof(char *) * (map_data->y_count + 1));
 	if (temp == NULL)
-	{
-		free_map(map_data->map);
-		proc_err(SL_ERR_MALLOC, NULL);
-	}
+		proc_map_err(map_data->map, NULL, SL_ERR_MALLOC, NULL);
 	i = 0;
 	while (i < map_data->y_count)
 	{
 		temp[i] = (char *)malloc(sizeof(char) * (map_data->x_count + 1));
 		if (temp[i] == NULL)
-		{
-			free_map(temp);
-			free_map(map_data->map);
-			proc_err(SL_ERR_MALLOC, NULL);
-		}
+			proc_map_err(map_data->map, temp, SL_ERR_MALLOC, NULL);
 		ft_strlcpy(temp[i], map_data->map[i], map_data->x_count + 1);
 		i++;
 	}
@@ -75,11 +68,8 @@ void	check_path_c(t_map *map_data, char **map_cpy)
 	count = 0;
 	check_path_c_core(map_cpy, map_data->p_y, map_data->p_x, &count);
 	if (count != map_data->c_count)
-	{
-		free(map_cpy);
-		proc_map_err(map_data,
+		proc_map_err(map_data->map, map_cpy, SL_ERR_PARAM,
 			"check_map: There is no valid path to some collectives\n");
-	}
 }
 
 int	check_tile_e(char **map_cpy, int x, int y, int *count)
@@ -117,11 +107,8 @@ void	check_path_e(t_map *map_data, char **map_cpy)
 	count = 0;
 	check_path_e_core(map_cpy, map_data->p_y, map_data->p_x, &count);
 	if (count != 1)
-	{
-		free(map_cpy);
-		proc_map_err(map_data,
+		proc_map_err(map_data->map, map_cpy, SL_ERR_PARAM,
 			"check_map: There is no valid path to an exit\n");
-	}
 }
 
 void	check_map(t_map *map_data)

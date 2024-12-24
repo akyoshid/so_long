@@ -6,27 +6,11 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 04:19:41 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/23 06:54:11 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/24 15:40:12 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
-
-void	free_map(char **map)
-{
-	int	i;
-
-	i = 0;
-	if (map != NULL)
-	{
-		while (map[i] != NULL)
-		{
-			free(map[i]);
-			i++;
-		}
-		free(map);
-	}
-}
 
 void	proc_gnl_err(char **map, int return_code)
 {
@@ -43,7 +27,7 @@ void	proc_gnl_err(char **map, int return_code)
 	exit(EXIT_FAILURE);
 }
 
-void	map_cpy(char **dst, char **src, int n)
+void	cpy_old_map(char **dst, char **src, int n)
 {
 	int	i;
 
@@ -61,10 +45,19 @@ char	**malloc_new_map(char **map, int line, int secured_line)
 
 	new_map = (char **)malloc(sizeof(char *) * (secured_line + 1));
 	if (new_map == NULL)
-		proc_gnl_err(map, GNL_FAILURE_MALLOC);
-	map_cpy(new_map, map, line);
-	free(map);
+		proc_map_err(map, NULL, SL_ERR_MALLOC, NULL);
+	if (line != 0)
+	{
+		cpy_old_map(new_map, map, line);
+		free(map);
+	}
 	return (new_map);
+}
+
+void	close_map_file(int fd, t_map *map_data)
+{
+	if (close(fd) == -1)
+		proc_map_err(map_data->map, NULL, SL_ERR_CLOSE, NULL);
 }
 
 void	read_map_file(int fd, t_map *map_data)
@@ -92,5 +85,6 @@ void	read_map_file(int fd, t_map *map_data)
 	}
 	if (gnl_return_code != GNL_SUCCESS_FIN)
 		proc_gnl_err(map_data->map, gnl_return_code);
+	close_map_file(fd, map_data);
 	map_data->y_count = line;
 }

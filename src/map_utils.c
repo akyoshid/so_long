@@ -1,23 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   open_map_file.c                                    :+:      :+:    :+:   */
+/*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/23 04:20:21 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/24 14:34:46 by akyoshid         ###   ########.fr       */
+/*   Created: 2024/12/24 05:53:16 by akyoshid          #+#    #+#             */
+/*   Updated: 2024/12/24 15:38:03 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-int	open_map_file(char *map_file)
+void	proc_map_err(char **map_1, char **map_2, int err_code, void *param)
 {
-	int		fd;
+	free_map(map_1);
+	free_map(map_2);
+	proc_err(err_code, param);
+}
 
-	fd = open(map_file, O_RDONLY);
-	if (fd == -1)
-		proc_err(SL_ERR_OPEN, NULL);
-	return (fd);
+void	free_map(char **map)
+{
+	int	i;
+
+	i = 0;
+	if (map != NULL)
+	{
+		while (map[i] != NULL)
+		{
+			free(map[i]);
+			i++;
+		}
+		free(map);
+	}
 }
