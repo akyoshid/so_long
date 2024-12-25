@@ -18,9 +18,14 @@ SRC = \
 					$(SRC_DIR)check_map.c \
 					$(SRC_DIR)check_path_c.c \
 					$(SRC_DIR)check_path_e.c \
+					$(SRC_DIR)img_utils.c \
 					$(SRC_DIR)map_utils.c \
 					$(SRC_DIR)open_map_file.c \
 					$(SRC_DIR)proc_err.c \
+					$(SRC_DIR)proc_mlx_err.c \
+					$(SRC_DIR)proc_mlx_init.c \
+					$(SRC_DIR)proc_mlx_load_sprite.c \
+					$(SRC_DIR)proc_mlx_new_window.c \
 					$(SRC_DIR)read_map_file.c 
 MANDATORY_MAIN =	$(SRC_DIR)so_long.c
 BONUS_MAIN =		$(SRC_DIR)so_long_bonus.c

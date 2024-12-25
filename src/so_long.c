@@ -6,23 +6,34 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 09:16:59 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/24 15:51:03 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/25 15:00:35 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
+void	quit_program(t_data *data)
+{
+	free_img(data, IMG_COUNT);
+	mlx_destroy_window(data->mlx, data->win);
+	mlx_destroy_display((data->mlx));
+	free(data->mlx);
+	free_map(data->map_data.map);
+}
+
 int	main(int argc, char *argv[])
 {
 	int		fd;
-	t_map	map_data;
+	t_data	data;
 
 	check_arg(argc, argv[1]);
 	fd = open_map_file(argv[1]);
-	read_map_file(fd, &map_data);
-	check_map(&map_data);
-	// ft_printf("p_x: %d\np_y: %d\n", map_data.p_x, map_data.p_y);
-	// ft_printf("x_count: %d\ny_count: %d\n", map_data.x_count, map_data.y_count);
-	free_map(map_data.map);
+	read_map_file(fd, &data.map_data);
+	check_map(&data.map_data);
+	proc_mlx_init(&data);
+	proc_mlx_new_window(&data);
+	proc_mlx_load_sprite(&data);
+	quit_program(&data);
+	printf("good\n");
 	return (0);
 }
