@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 14:57:51 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/25 14:58:31 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/25 15:17:18 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,32 +19,32 @@ void	proc_xpm_2_img_err(t_data *data, int img_code)
 		"mlx_xpm_file_to_image: Failed to load XPM file\n");
 }
 
-void	proc_mlx_load_suicune(t_data *data, int trash)
+void	proc_mlx_load_suicune(t_data *data, int i)
 {
-	if ((data->img[IMG_SUICUNE_1] = mlx_xpm_file_to_image(data->mlx,
-		"assets/suicune_1.xpm", &trash, &trash)) == NULL)
-		proc_xpm_2_img_err(data, IMG_SUICUNE_1);
-	if ((data->img[IMG_SUICUNE_2] = mlx_xpm_file_to_image(data->mlx,
-		"assets/suicune_2.xpm", &trash, &trash)) == NULL)
-		proc_xpm_2_img_err(data, IMG_SUICUNE_2);
-	if ((data->img[IMG_SUICUNE_3] = mlx_xpm_file_to_image(data->mlx,
-		"assets/suicune_3.xpm", &trash, &trash)) == NULL)
-		proc_xpm_2_img_err(data, IMG_SUICUNE_3);
-	if ((data->img[IMG_SUICUNE_4] = mlx_xpm_file_to_image(data->mlx,
-		"assets/suicune_4.xpm", &trash, &trash)) == NULL)
-		proc_xpm_2_img_err(data, IMG_SUICUNE_4);
-	if ((data->img[IMG_SUICUNE_5] = mlx_xpm_file_to_image(data->mlx,
-		"assets/suicune_5.xpm", &trash, &trash)) == NULL)
-		proc_xpm_2_img_err(data, IMG_SUICUNE_5);
-	if ((data->img[IMG_SUICUNE_6] = mlx_xpm_file_to_image(data->mlx,
-		"assets/suicune_6.xpm", &trash, &trash)) == NULL)
-		proc_xpm_2_img_err(data, IMG_SUICUNE_6);
-	if ((data->img[IMG_SUICUNE_7] = mlx_xpm_file_to_image(data->mlx,
-		"assets/suicune_7.xpm", &trash, &trash)) == NULL)
-		proc_xpm_2_img_err(data, IMG_SUICUNE_7);
-	if ((data->img[IMG_SUICUNE_8] = mlx_xpm_file_to_image(data->mlx,
-		"assets/suicune_8.xpm", &trash, &trash)) == NULL)
-		proc_xpm_2_img_err(data, IMG_SUICUNE_8);
+	if ((data->img[IMG_EXIT_1] = mlx_xpm_file_to_image(data->mlx,
+									"assets/suicune_1.xpm", &i, &i)) == NULL)
+		proc_xpm_2_img_err(data, IMG_EXIT_1);
+	if ((data->img[IMG_EXIT_2] = mlx_xpm_file_to_image(data->mlx,
+									"assets/suicune_2.xpm", &i, &i)) == NULL)
+		proc_xpm_2_img_err(data, IMG_EXIT_2);
+	if ((data->img[IMG_EXIT_3] = mlx_xpm_file_to_image(data->mlx,
+									"assets/suicune_3.xpm", &i, &i)) == NULL)
+		proc_xpm_2_img_err(data, IMG_EXIT_3);
+	if ((data->img[IMG_EXIT_4] = mlx_xpm_file_to_image(data->mlx,
+									"assets/suicune_4.xpm", &i, &i)) == NULL)
+		proc_xpm_2_img_err(data, IMG_EXIT_4);
+	if ((data->img[IMG_EXIT_5] = mlx_xpm_file_to_image(data->mlx,
+									"assets/suicune_5.xpm", &i, &i)) == NULL)
+		proc_xpm_2_img_err(data, IMG_EXIT_5);
+	if ((data->img[IMG_EXIT_6] = mlx_xpm_file_to_image(data->mlx,
+									"assets/suicune_6.xpm", &i, &i)) == NULL)
+		proc_xpm_2_img_err(data, IMG_EXIT_6);
+	if ((data->img[IMG_EXIT_7] = mlx_xpm_file_to_image(data->mlx,
+									"assets/suicune_7.xpm", &i, &i)) == NULL)
+		proc_xpm_2_img_err(data, IMG_EXIT_7);
+	if ((data->img[IMG_EXIT_8] = mlx_xpm_file_to_image(data->mlx,
+									"assets/suicune_8.xpm", &i, &i)) == NULL)
+		proc_xpm_2_img_err(data, IMG_EXIT_8);
 }
 
 void	proc_mlx_load_sprite(t_data *data)
