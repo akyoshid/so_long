@@ -25,11 +25,9 @@
 # include "../libft/inc/get_next_line_bonus.h"
 
 # define SL_ERR_PARAM 0
-# define SL_ERR_NUM_OF_ARG 1
-# define SL_ERR_FILE_EXT 2
-# define SL_ERR_OPEN 3
-# define SL_ERR_MALLOC 4
-# define SL_ERR_CLOSE 5
+# define SL_ERR_OPEN 1
+# define SL_ERR_MALLOC 2
+# define SL_ERR_CLOSE 3
 
 typedef struct s_map
 {
