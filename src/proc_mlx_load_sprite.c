@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 14:57:51 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/25 15:17:18 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/25 15:47:07 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,55 +19,72 @@ void	proc_xpm_2_img_err(t_data *data, int img_code)
 		"mlx_xpm_file_to_image: Failed to load XPM file\n");
 }
 
-void	proc_mlx_load_suicune(t_data *data, int i)
+void	proc_mlx_load_suicune_2(t_data *data, int trash)
 {
-	if ((data->img[IMG_EXIT_1] = mlx_xpm_file_to_image(data->mlx,
-									"assets/suicune_1.xpm", &i, &i)) == NULL)
-		proc_xpm_2_img_err(data, IMG_EXIT_1);
-	if ((data->img[IMG_EXIT_2] = mlx_xpm_file_to_image(data->mlx,
-									"assets/suicune_2.xpm", &i, &i)) == NULL)
-		proc_xpm_2_img_err(data, IMG_EXIT_2);
-	if ((data->img[IMG_EXIT_3] = mlx_xpm_file_to_image(data->mlx,
-									"assets/suicune_3.xpm", &i, &i)) == NULL)
-		proc_xpm_2_img_err(data, IMG_EXIT_3);
-	if ((data->img[IMG_EXIT_4] = mlx_xpm_file_to_image(data->mlx,
-									"assets/suicune_4.xpm", &i, &i)) == NULL)
-		proc_xpm_2_img_err(data, IMG_EXIT_4);
-	if ((data->img[IMG_EXIT_5] = mlx_xpm_file_to_image(data->mlx,
-									"assets/suicune_5.xpm", &i, &i)) == NULL)
-		proc_xpm_2_img_err(data, IMG_EXIT_5);
-	if ((data->img[IMG_EXIT_6] = mlx_xpm_file_to_image(data->mlx,
-									"assets/suicune_6.xpm", &i, &i)) == NULL)
-		proc_xpm_2_img_err(data, IMG_EXIT_6);
-	if ((data->img[IMG_EXIT_7] = mlx_xpm_file_to_image(data->mlx,
-									"assets/suicune_7.xpm", &i, &i)) == NULL)
-		proc_xpm_2_img_err(data, IMG_EXIT_7);
-	if ((data->img[IMG_EXIT_8] = mlx_xpm_file_to_image(data->mlx,
-									"assets/suicune_8.xpm", &i, &i)) == NULL)
-		proc_xpm_2_img_err(data, IMG_EXIT_8);
+	data->img[IMG_SUICUNE_5] = mlx_xpm_file_to_image(
+			data->mlx, "assets/suicune_5.xpm", &trash, &trash);
+	if (data->img[IMG_SUICUNE_5] == NULL)
+		proc_xpm_2_img_err(data, IMG_SUICUNE_5);
+	data->img[IMG_SUICUNE_6] = mlx_xpm_file_to_image(
+			data->mlx, "assets/suicune_6.xpm", &trash, &trash);
+	if (data->img[IMG_SUICUNE_6] == NULL)
+		proc_xpm_2_img_err(data, IMG_SUICUNE_6);
+	data->img[IMG_SUICUNE_7] = mlx_xpm_file_to_image(
+			data->mlx, "assets/suicune_7.xpm", &trash, &trash);
+	if (data->img[IMG_SUICUNE_7] == NULL)
+		proc_xpm_2_img_err(data, IMG_SUICUNE_7);
+	data->img[IMG_SUICUNE_8] = mlx_xpm_file_to_image(
+			data->mlx, "assets/suicune_8.xpm", &trash, &trash);
+	if (data->img[IMG_SUICUNE_8] == NULL)
+		proc_xpm_2_img_err(data, IMG_SUICUNE_8);
 }
 
-void	proc_mlx_load_sprite(t_data *data)
+void	proc_mlx_load_suicune_1(t_data *data, int trash)
 {
-	int	trash;
+	data->img[IMG_SUICUNE_1] = mlx_xpm_file_to_image(
+			data->mlx, "assets/suicune_1.xpm", &trash, &trash);
+	if (data->img[IMG_SUICUNE_1] == NULL)
+		proc_xpm_2_img_err(data, IMG_SUICUNE_1);
+	data->img[IMG_SUICUNE_2] = mlx_xpm_file_to_image(
+			data->mlx, "assets/suicune_2.xpm", &trash, &trash);
+	if (data->img[IMG_SUICUNE_2] == NULL)
+		proc_xpm_2_img_err(data, IMG_SUICUNE_2);
+	data->img[IMG_SUICUNE_3] = mlx_xpm_file_to_image(
+			data->mlx, "assets/suicune_3.xpm", &trash, &trash);
+	if (data->img[IMG_SUICUNE_3] == NULL)
+		proc_xpm_2_img_err(data, IMG_SUICUNE_3);
+	data->img[IMG_SUICUNE_4] = mlx_xpm_file_to_image(
+			data->mlx, "assets/suicune_4.xpm", &trash, &trash);
+	if (data->img[IMG_SUICUNE_4] == NULL)
+		proc_xpm_2_img_err(data, IMG_SUICUNE_4);
+	proc_mlx_load_suicune_2(data, 0);
+}
 
-	if ((data->img[IMG_ENEMY] = mlx_xpm_file_to_image(data->mlx,
-		"assets/enemy.xpm", &trash, &trash)) == NULL)
+void	proc_mlx_load_sprite(t_data *data, int trash)
+{
+	data->img[IMG_ENEMY] = mlx_xpm_file_to_image(
+			data->mlx, "assets/enemy.xpm", &trash, &trash);
+	if (data->img[IMG_ENEMY] == NULL)
 		proc_xpm_2_img_err(data, IMG_ENEMY);
-	if ((data->img[IMG_LOSER] = mlx_xpm_file_to_image(data->mlx,
-		"assets/loser.xpm", &trash, &trash)) == NULL)
+	data->img[IMG_LOSER] = mlx_xpm_file_to_image(
+			data->mlx, "assets/loser.xpm", &trash, &trash);
+	if (data->img[IMG_LOSER] == NULL)
 		proc_xpm_2_img_err(data, IMG_LOSER);
-	if ((data->img[IMG_MONSTER_BALL] = mlx_xpm_file_to_image(data->mlx,
-		"assets/monster_ball.xpm", &trash, &trash)) == NULL)
+	data->img[IMG_MONSTER_BALL] = mlx_xpm_file_to_image(
+			data->mlx, "assets/monster_ball.xpm", &trash, &trash);
+	if (data->img[IMG_MONSTER_BALL] == NULL)
 		proc_xpm_2_img_err(data, IMG_MONSTER_BALL);
-	if ((data->img[IMG_PLAYER] = mlx_xpm_file_to_image(data->mlx,
-		"assets/player.xpm", &trash, &trash)) == NULL)
+	data->img[IMG_PLAYER] = mlx_xpm_file_to_image(
+			data->mlx, "assets/player.xpm", &trash, &trash);
+	if (data->img[IMG_PLAYER] == NULL)
 		proc_xpm_2_img_err(data, IMG_PLAYER);
-	proc_mlx_load_suicune(data, 0);
-	if ((data->img[IMG_TILE] = mlx_xpm_file_to_image(data->mlx,
-		"assets/tile.xpm", &trash, &trash)) == NULL)
+	proc_mlx_load_suicune_1(data, 0);
+	data->img[IMG_TILE] = mlx_xpm_file_to_image(
+			data->mlx, "assets/tile.xpm", &trash, &trash);
+	if (data->img[IMG_TILE] == NULL)
 		proc_xpm_2_img_err(data, IMG_TILE);
-	if ((data->img[IMG_TREE] = mlx_xpm_file_to_image(data->mlx,
-		"assets/tree.xpm", &trash, &trash)) == NULL)
+	data->img[IMG_TREE] = mlx_xpm_file_to_image(
+			data->mlx, "assets/tree.xpm", &trash, &trash);
+	if (data->img[IMG_TREE] == NULL)
 		proc_xpm_2_img_err(data, IMG_TREE);
 }

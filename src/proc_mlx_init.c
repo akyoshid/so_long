@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 14:55:18 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/25 14:55:43 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/25 15:37:36 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,3 @@ void	proc_mlx_init(t_data *data)
 		proc_mlx_err(data, SL_ERR_MLX_INIT,
 			"mlx_init: Failed to initialize the MLX library\n");
 }
-

@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 15:24:44 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/25 15:21:02 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/25 15:48:43 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,14 @@
 # define IMG_LOSER 1
 # define IMG_MONSTER_BALL 2
 # define IMG_PLAYER 3
-# define IMG_EXIT_1 4
-# define IMG_EXIT_2 5
-# define IMG_EXIT_3 6
-# define IMG_EXIT_4 7
-# define IMG_EXIT_5 8
-# define IMG_EXIT_6 9
-# define IMG_EXIT_7 10
-# define IMG_EXIT_8 11
+# define IMG_SUICUNE_1 4
+# define IMG_SUICUNE_2 5
+# define IMG_SUICUNE_3 6
+# define IMG_SUICUNE_4 7
+# define IMG_SUICUNE_5 8
+# define IMG_SUICUNE_6 9
+# define IMG_SUICUNE_7 10
+# define IMG_SUICUNE_8 11
 # define IMG_TILE 12
 # define IMG_TREE 13
 # define IMG_COUNT 14
@@ -110,8 +110,9 @@ void	proc_mlx_err(t_data *data, int err_code, void *param);
 void	proc_mlx_init(t_data *data);
 // proc_mlx_load_sprite.c
 void	proc_xpm_2_img_err(t_data *data, int img_code);
-void	proc_mlx_load_suicune(t_data *data, int i);
-void	proc_mlx_load_sprite(t_data *data);
+void	proc_mlx_load_suicune_2(t_data *data, int trash);
+void	proc_mlx_load_suicune_1(t_data *data, int trash);
+void	proc_mlx_load_sprite(t_data *data, int trash);
 // proc_mlx_new_window.c
 void	proc_mlx_new_window(t_data *data);
 // read_map_file.c
