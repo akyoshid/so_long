@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 04:17:26 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/24 14:04:15 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/25 07:09:44 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,7 @@ void	proc_err(int err_code, void *param)
 		perror("open");
 	else if (err_code == SL_ERR_MALLOC)
 		perror("malloc");
+	else if (err_code == SL_ERR_CLOSE)
+		perror("close");
 	exit(EXIT_FAILURE);
 }
