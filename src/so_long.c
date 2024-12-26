@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 09:16:59 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/26 17:23:25 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/26 20:02:53 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	quit_program(t_data *data)
 {
+	mlx_destroy_image(data->mlx, data->buff.img);
 	free_img(data, IMG_COUNT);
 	mlx_destroy_window(data->mlx, data->win);
 	mlx_destroy_display((data->mlx));
@@ -121,6 +122,7 @@ int	main(int argc, char *argv[])
 	proc_mlx_init(&data);
 	proc_mlx_new_window(&data);
 	proc_mlx_load_sprite(&data, 0);
+	proc_mlx_buff_image(&data);
 	data.loop_count = 0;
 	data.suicune_count = -1;
 	data.key = 0;

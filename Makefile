@@ -22,6 +22,7 @@ SRC = \
 					$(SRC_DIR)map_utils.c \
 					$(SRC_DIR)open_map_file.c \
 					$(SRC_DIR)proc_err.c \
+					$(SRC_DIR)proc_mlx_buff_image.c \
 					$(SRC_DIR)proc_mlx_err.c \
 					$(SRC_DIR)proc_mlx_init.c \
 					$(SRC_DIR)proc_mlx_load_sprite.c \

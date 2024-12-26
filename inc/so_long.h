@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 15:24:44 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/26 17:21:18 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/26 19:58:11 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # define SL_ERR_MLX_INIT 0
 # define SL_ERR_MLX_NEW_WIN 1
 # define SL_ERR_MLX_XPM_2_IMG 2
+# define SL_ERR_MLX_NEW_IMG 3
 
 # define IMG_ENEMY 0
 # define IMG_LOSER 1
@@ -51,6 +52,16 @@
 # define IMG_TILE 12
 # define IMG_TREE 13
 # define IMG_COUNT 14
+
+typedef struct s_buff
+{
+	void	*img;
+	void	*addr;
+	int		bits_per_pixel;
+	int		bytes_per_pixel;
+	int		line_size;
+	int		endian;
+}			t_buff;
 
 typedef struct s_map
 {
@@ -72,6 +83,7 @@ typedef struct s_data
 	int				width;
 	int				height;
 	void			*img[14];
+	t_buff			buff;
 	t_map			map_data;
 	int				loop_count;
 	unsigned char	suicune_count;
@@ -107,6 +119,9 @@ void	free_map(char **map);
 int		open_map_file(char *map_file);
 // proc_err.c
 void	proc_err(int err_code, void *param);
+// proc_mlx_buff_image.c
+void	set_bytes_per_pixel(int *bytes_per_pixel, int bits_per_pixel);
+void	proc_mlx_buff_image(t_data *data);
 // proc_mlx_err.c
 void	proc_mlx_err(t_data *data, int err_code, void *param);
 // proc_mlx_init.c
