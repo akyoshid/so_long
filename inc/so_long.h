@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 15:24:44 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/25 15:48:43 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/26 17:21:18 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,15 @@ typedef struct s_map
 
 typedef struct s_data
 {
-	void	*mlx;
-	void	*win;
-	int		width;
-	int		height;
-	void	*img[14];
-	t_map	map_data;
+	void			*mlx;
+	void			*win;
+	int				width;
+	int				height;
+	void			*img[14];
+	t_map			map_data;
+	int				loop_count;
+	unsigned char	suicune_count;
+	int				key;
 }			t_data;
 
 // check_arg.c
