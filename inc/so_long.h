@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 15:24:44 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/26 19:58:11 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/26 21:36:53 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@
 # define IMG_TREE 13
 # define IMG_COUNT 14
 
-typedef struct s_buff
+typedef struct s_img
 {
 	void	*img;
 	void	*addr;
@@ -61,7 +61,7 @@ typedef struct s_buff
 	int		bytes_per_pixel;
 	int		line_size;
 	int		endian;
-}			t_buff;
+}			t_img;
 
 typedef struct s_map
 {
@@ -82,9 +82,9 @@ typedef struct s_data
 	void			*win;
 	int				width;
 	int				height;
-	void			*img[14];
-	t_buff			buff;
 	t_map			map_data;
+	t_img			img_data[14];
+	t_img			buff;
 	int				loop_count;
 	unsigned char	suicune_count;
 	int				key;
@@ -112,6 +112,8 @@ void	check_path_e_core(char **map_cpy, int y, int x, int *count);
 void	check_path_e(t_map *map_data, char **map_cpy);
 // img_utils.c
 void	free_img(t_data *data, int img_count);
+void	set_bytes_per_pixel(int *bytes_per_pixel, int bits_per_pixel);
+void	proc_mlx_get_data_addr(t_img *img_data);
 // map_utils.c
 void	proc_map_err(char **map_1, char **map_2, int err_code, void *param);
 void	free_map(char **map);
@@ -127,10 +129,9 @@ void	proc_mlx_err(t_data *data, int err_code, void *param);
 // proc_mlx_init.c
 void	proc_mlx_init(t_data *data);
 // proc_mlx_load_sprite.c
-void	proc_xpm_2_img_err(t_data *data, int img_code);
-void	proc_mlx_load_suicune_2(t_data *data, int trash);
-void	proc_mlx_load_suicune_1(t_data *data, int trash);
-void	proc_mlx_load_sprite(t_data *data, int trash);
+void	after_mlx_xpm_file_to_image(t_data *data, int img_code);
+void	proc_mlx_load_suicune(t_data *data, int *trash);
+void	proc_mlx_load_sprite(t_data *data);
 // proc_mlx_new_window.c
 void	proc_mlx_new_window(t_data *data);
 // read_map_file.c

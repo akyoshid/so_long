@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 09:16:59 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/26 20:02:53 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/26 21:48:45 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,45 +26,45 @@ void	put_suicune_to_window(t_data *data, int x, int y)
 {
 	if (data->suicune_count % 8 == 0)
 		mlx_put_image_to_window(data->mlx, data->win,
-			data->img[IMG_SUICUNE_1], x * 64, y * 64);
+			data->img_data[IMG_SUICUNE_1].img, x * 64, y * 64);
 	else if (data->suicune_count % 8 == 1)
 		mlx_put_image_to_window(data->mlx, data->win,
-			data->img[IMG_SUICUNE_2], x * 64, y * 64);
+			data->img_data[IMG_SUICUNE_2].img, x * 64, y * 64);
 	else if (data->suicune_count % 8 == 2)
 		mlx_put_image_to_window(data->mlx, data->win,
-			data->img[IMG_SUICUNE_3], x * 64, y * 64);
+			data->img_data[IMG_SUICUNE_3].img, x * 64, y * 64);
 	else if (data->suicune_count % 8 == 3)
 		mlx_put_image_to_window(data->mlx, data->win,
-			data->img[IMG_SUICUNE_4], x * 64, y * 64);
+			data->img_data[IMG_SUICUNE_4].img, x * 64, y * 64);
 	else if (data->suicune_count % 8 == 4)
 		mlx_put_image_to_window(data->mlx, data->win,
-			data->img[IMG_SUICUNE_5], x * 64, y * 64);
+			data->img_data[IMG_SUICUNE_5].img, x * 64, y * 64);
 	else if (data->suicune_count % 8 == 5)
 		mlx_put_image_to_window(data->mlx, data->win,
-			data->img[IMG_SUICUNE_6], x * 64, y * 64);
+			data->img_data[IMG_SUICUNE_6].img, x * 64, y * 64);
 	else if (data->suicune_count % 8 == 6)
 		mlx_put_image_to_window(data->mlx, data->win,
-			data->img[IMG_SUICUNE_7], x * 64, y * 64);
+			data->img_data[IMG_SUICUNE_7].img, x * 64, y * 64);
 	else if (data->suicune_count % 8 == 7)
 		mlx_put_image_to_window(data->mlx, data->win,
-			data->img[IMG_SUICUNE_8], x * 64, y * 64);
+			data->img_data[IMG_SUICUNE_8].img, x * 64, y * 64);
 }
 
 void	put_images_to_window(t_data *data, int x, int y)
 {
 	mlx_put_image_to_window(data->mlx, data->win,
-		data->img[IMG_TILE], x * 64, y * 64);
+		data->img_data[IMG_TILE].img, x * 64, y * 64);
 	if (data->map_data.map[y][x] == '1')
 		mlx_put_image_to_window(data->mlx, data->win,
-			data->img[IMG_TREE], x * 64, y * 64);
+			data->img_data[IMG_TREE].img, x * 64, y * 64);
 	if (data->map_data.map[y][x] == 'C')
 		mlx_put_image_to_window(data->mlx, data->win,
-			data->img[IMG_MONSTER_BALL], x * 64, y * 64);
+			data->img_data[IMG_MONSTER_BALL].img, x * 64, y * 64);
 	if (data->map_data.map[y][x] == 'E')
 		put_suicune_to_window(data, x, y);
 	if (data->map_data.map[y][x] == 'P')
 		mlx_put_image_to_window(data->mlx, data->win,
-			data->img[IMG_PLAYER], x * 64, y * 64);
+			data->img_data[IMG_PLAYER].img, x * 64, y * 64);
 	// if (data->map_data.map[y][x] == 'R')
 	// 	mlx_put_image_to_window(data->mlx, data->win,
 	// 		data->img[IMG_ENEMY], x * 64, y * 64);
@@ -121,7 +121,7 @@ int	main(int argc, char *argv[])
 	check_map(&data.map_data);
 	proc_mlx_init(&data);
 	proc_mlx_new_window(&data);
-	proc_mlx_load_sprite(&data, 0);
+	proc_mlx_load_sprite(&data);
 	proc_mlx_buff_image(&data);
 	data.loop_count = 0;
 	data.suicune_count = -1;
