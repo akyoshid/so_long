@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 15:24:44 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/26 23:04:11 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/27 00:52:02 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,54 +91,63 @@ typedef struct s_data
 }			t_data;
 
 // check_arg.c
-void	check_argc(int argc);
-void	check_file_ext(char *map_file);
-void	check_arg(int argc, char *map_file);
+void			check_argc(int argc);
+void			check_file_ext(char *map_file);
+void			check_arg(int argc, char *map_file);
 // check_compo.c
-void	check_invalid_component(t_map *map_data, int *e_count, int *p_count);
-void	check_component(t_map *map_data);
+void			check_invalid_component(t_map *map_data, int *e_count, int *p_count);
+void			check_component(t_map *map_data);
 // check_map.c
-void	check_rectangular(t_map *map_data);
-void	check_wall(t_map *map_data);
-char	**cpy_map(t_map *map_data);
-void	check_map(t_map *map_data);
+void			check_rectangular(t_map *map_data);
+void			check_wall(t_map *map_data);
+char			**cpy_map(t_map *map_data);
+void			check_map(t_map *map_data);
 // check_path_c.c
-int		check_tile_c(char **map_cpy, int x, int y, int *count);
-void	check_path_c_core(char **map_cpy, int y, int x, int *count);
-void	check_path_c(t_map *map_data, char **map_cpy);
+int				check_tile_c(char **map_cpy, int x, int y, int *count);
+void			check_path_c_core(char **map_cpy, int y, int x, int *count);
+void			check_path_c(t_map *map_data, char **map_cpy);
 // check_path_e.c
-int		check_tile_e(char **map_cpy, int x, int y, int *count);
-void	check_path_e_core(char **map_cpy, int y, int x, int *count);
-void	check_path_e(t_map *map_data, char **map_cpy);
+int				check_tile_e(char **map_cpy, int x, int y, int *count);
+void			check_path_e_core(char **map_cpy, int y, int x, int *count);
+void			check_path_e(t_map *map_data, char **map_cpy);
 // img_utils.c
-void	free_img(t_data *data, int img_count);
-void	set_bytes_per_pixel(int *bytes_per_pixel, int bits_per_pixel);
-void	proc_mlx_get_data_addr(t_img *img_data);
+void			free_img(t_data *data, int img_count);
+void			set_bytes_per_pixel(int *bytes_per_pixel, int bits_per_pixel);
+void			proc_mlx_get_data_addr(t_img *img_data);
 // map_utils.c
-void	proc_map_err(char **map_1, char **map_2, int err_code, void *param);
-void	free_map(char **map);
+void			proc_map_err(char **map_1, char **map_2, int err_code, void *param);
+void			free_map(char **map);
 // open_map_file.c
-int		open_map_file(char *map_file);
+int				open_map_file(char *map_file);
 // proc_err.c
-void	proc_err(int err_code, void *param);
+void			proc_err(int err_code, void *param);
 // proc_mlx_buff_image.c
-void	set_bytes_per_pixel(int *bytes_per_pixel, int bits_per_pixel);
-void	proc_mlx_buff_image(t_data *data);
+void			set_bytes_per_pixel(int *bytes_per_pixel, int bits_per_pixel);
+void			proc_mlx_buff_image(t_data *data);
 // proc_mlx_err.c
-void	proc_mlx_err(t_data *data, int err_code, void *param);
+void			proc_mlx_err(t_data *data, int err_code, void *param);
 // proc_mlx_init.c
-void	proc_mlx_init(t_data *data);
+void			proc_mlx_init(t_data *data);
 // proc_mlx_load_sprite.c
-void	after_mlx_xpm_file_to_image(t_data *data, int img_code);
-void	proc_mlx_load_suicune(t_data *data, int *trash);
-void	proc_mlx_load_sprite(t_data *data);
+void			after_mlx_xpm_file_to_image(t_data *data, int img_code);
+void			proc_mlx_load_suicune(t_data *data, int *trash);
+void			proc_mlx_load_sprite(t_data *data);
 // proc_mlx_new_window.c
-void	proc_mlx_new_window(t_data *data);
+void			proc_mlx_new_window(t_data *data);
+// put_images_to_buff.c
+unsigned int	get_pixel_from_image(t_img *img_data, int x, int y);
+void			put_pixel_to_buff(
+					t_img *buff_data, int pixel_x, int pixel_y, unsigned int pixel);
+void			put_image_to_buff(t_data *data, int img_code, int x, int y);
+void			put_suicune_to_buff(t_data *data, int x, int y);
+void			put_images_to_buff(t_data *data, int x, int y);
+// quit_program.c
+void			quit_program(t_data *data);
 // read_map_file.c
-void	proc_gnl_err(char **map, int return_code);
-void	cpy_old_map(char **dst, char **src, int n);
-char	**malloc_new_map(char **map, int line, int secured_line);
-void	close_map_file(int fd, t_map *map_data);
-void	read_map_file(int fd, t_map *map_data);
+void			proc_gnl_err(char **map, int return_code);
+void			cpy_old_map(char **dst, char **src, int n);
+char			**malloc_new_map(char **map, int line, int secured_line);
+void			close_map_file(int fd, t_map *map_data);
+void			read_map_file(int fd, t_map *map_data);
 
 #endif

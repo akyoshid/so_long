@@ -27,6 +27,8 @@ SRC = \
 					$(SRC_DIR)proc_mlx_init.c \
 					$(SRC_DIR)proc_mlx_load_sprite.c \
 					$(SRC_DIR)proc_mlx_new_window.c \
+					$(SRC_DIR)put_images_to_buff.c \
+					$(SRC_DIR)quit_program.c \
 					$(SRC_DIR)read_map_file.c 
 MANDATORY_MAIN =	$(SRC_DIR)so_long.c
 BONUS_MAIN =		$(SRC_DIR)so_long_bonus.c
