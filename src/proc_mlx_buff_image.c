@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 19:56:37 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/26 23:04:36 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/27 00:41:39 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	proc_mlx_buff_image(t_data *data)
 	data->width = data->map_data.x_count * 64;
 	data->height = data->map_data.y_count * 64;
 	data->buff_data.img = mlx_new_image(
-						data->mlx, data->width, data->height);
+			data->mlx, data->width, data->height);
 	if (data->buff_data.img == NULL)
 	{
 		free_img(data, IMG_COUNT);

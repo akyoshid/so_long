@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 09:16:59 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/27 00:13:39 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/27 00:41:23 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,12 @@ void	quit_program(t_data *data)
 
 unsigned int	get_pixel_from_image(t_img *img_data, int x, int y)
 {
+	int				offset;
 	char			*p;
 	unsigned int	pixel;
 
-	p = img_data->addr + y * img_data->line_size + x * img_data->bytes_per_pixel;
+	offset = y * img_data->line_size + x * img_data->bytes_per_pixel;
+	p = img_data->addr + offset;
 	pixel = *(unsigned int *)p;
 	return (pixel);
 }
@@ -35,13 +37,14 @@ unsigned int	get_pixel_from_image(t_img *img_data, int x, int y)
 void	put_pixel_to_buff(
 	t_img *buff_data, int pixel_x, int pixel_y, unsigned int pixel)
 {
+	int				offset;
 	unsigned int	*dst;
 
 	if (pixel == (unsigned int)0xFF000000)
 		return ;
-	dst = (unsigned int *)
-		(buff_data->addr + pixel_y * buff_data->line_size
-		+ pixel_x * buff_data->bytes_per_pixel);
+	offset = pixel_y * buff_data->line_size
+		+ pixel_x * buff_data->bytes_per_pixel;
+	dst = (unsigned int *)(buff_data->addr + offset);
 	*dst = pixel;
 }
 
@@ -58,7 +61,7 @@ void	put_image_to_buff(t_data *data, int img_code, int x, int y)
 		while (pixel_x < 64)
 		{
 			pixel = get_pixel_from_image(
-						&data->img_data[img_code], pixel_x, pixel_y);
+					&data->img_data[img_code], pixel_x, pixel_y);
 			put_pixel_to_buff(&data->buff_data,
 				x * 64 + pixel_x, y * 64 + pixel_y, pixel);
 			pixel_x++;
@@ -107,7 +110,7 @@ void	put_images_to_buff(t_data *data, int x, int y)
 void	refresh_display(t_data *data)
 {
 	int	x;
-	int y;
+	int	y;
 
 	y = 0;
 	// refresh_map(data);
@@ -161,10 +164,10 @@ int	main(int argc, char *argv[])
 	refresh_display(&data);
 
 	mlx_loop_hook(data.mlx, loop_hook, &data);
-	mlx_hook(data.win, DestroyNotify, StructureNotifyMask, mlx_loop_end, data.mlx);
+	mlx_hook(data.win, DestroyNotify, StructureNotifyMask,
+		mlx_loop_end, data.mlx);
 	mlx_loop(data.mlx);
 
 	quit_program(&data);
-	ft_printf("\n\nfin\n\n\n");
 	return (0);
 }
