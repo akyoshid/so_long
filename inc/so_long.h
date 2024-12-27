@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 15:24:44 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/26 21:36:53 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/26 23:04:11 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@
 typedef struct s_img
 {
 	void	*img;
-	void	*addr;
+	char	*addr;
 	int		bits_per_pixel;
 	int		bytes_per_pixel;
 	int		line_size;
@@ -84,7 +84,7 @@ typedef struct s_data
 	int				height;
 	t_map			map_data;
 	t_img			img_data[14];
-	t_img			buff;
+	t_img			buff_data;
 	int				loop_count;
 	unsigned char	suicune_count;
 	int				key;

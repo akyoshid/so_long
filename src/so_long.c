@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 09:16:59 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/26 21:48:45 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/27 00:13:39 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	quit_program(t_data *data)
 {
-	mlx_destroy_image(data->mlx, data->buff.img);
+	mlx_destroy_image(data->mlx, data->buff_data.img);
 	free_img(data, IMG_COUNT);
 	mlx_destroy_window(data->mlx, data->win);
 	mlx_destroy_display((data->mlx));
@@ -22,55 +22,86 @@ void	quit_program(t_data *data)
 	free_map(data->map_data.map);
 }
 
-void	put_suicune_to_window(t_data *data, int x, int y)
+unsigned int	get_pixel_from_image(t_img *img_data, int x, int y)
 {
-	if (data->suicune_count % 8 == 0)
-		mlx_put_image_to_window(data->mlx, data->win,
-			data->img_data[IMG_SUICUNE_1].img, x * 64, y * 64);
-	else if (data->suicune_count % 8 == 1)
-		mlx_put_image_to_window(data->mlx, data->win,
-			data->img_data[IMG_SUICUNE_2].img, x * 64, y * 64);
-	else if (data->suicune_count % 8 == 2)
-		mlx_put_image_to_window(data->mlx, data->win,
-			data->img_data[IMG_SUICUNE_3].img, x * 64, y * 64);
-	else if (data->suicune_count % 8 == 3)
-		mlx_put_image_to_window(data->mlx, data->win,
-			data->img_data[IMG_SUICUNE_4].img, x * 64, y * 64);
-	else if (data->suicune_count % 8 == 4)
-		mlx_put_image_to_window(data->mlx, data->win,
-			data->img_data[IMG_SUICUNE_5].img, x * 64, y * 64);
-	else if (data->suicune_count % 8 == 5)
-		mlx_put_image_to_window(data->mlx, data->win,
-			data->img_data[IMG_SUICUNE_6].img, x * 64, y * 64);
-	else if (data->suicune_count % 8 == 6)
-		mlx_put_image_to_window(data->mlx, data->win,
-			data->img_data[IMG_SUICUNE_7].img, x * 64, y * 64);
-	else if (data->suicune_count % 8 == 7)
-		mlx_put_image_to_window(data->mlx, data->win,
-			data->img_data[IMG_SUICUNE_8].img, x * 64, y * 64);
+	char			*p;
+	unsigned int	pixel;
+
+	p = img_data->addr + y * img_data->line_size + x * img_data->bytes_per_pixel;
+	pixel = *(unsigned int *)p;
+	return (pixel);
 }
 
-void	put_images_to_window(t_data *data, int x, int y)
+void	put_pixel_to_buff(
+	t_img *buff_data, int pixel_x, int pixel_y, unsigned int pixel)
 {
-	mlx_put_image_to_window(data->mlx, data->win,
-		data->img_data[IMG_TILE].img, x * 64, y * 64);
+	unsigned int	*dst;
+
+	if (pixel == (unsigned int)0xFF000000)
+		return ;
+	dst = (unsigned int *)
+		(buff_data->addr + pixel_y * buff_data->line_size
+		+ pixel_x * buff_data->bytes_per_pixel);
+	*dst = pixel;
+}
+
+void	put_image_to_buff(t_data *data, int img_code, int x, int y)
+{
+	int				pixel_x;
+	int				pixel_y;
+	unsigned int	pixel;
+
+	pixel_y = 0;
+	while (pixel_y < 64)
+	{
+		pixel_x = 0;
+		while (pixel_x < 64)
+		{
+			pixel = get_pixel_from_image(
+						&data->img_data[img_code], pixel_x, pixel_y);
+			put_pixel_to_buff(&data->buff_data,
+				x * 64 + pixel_x, y * 64 + pixel_y, pixel);
+			pixel_x++;
+		}
+		pixel_y++;
+	}
+}
+
+void	put_suicune_to_buff(t_data *data, int x, int y)
+{
+	if (data->suicune_count % 8 == 0)
+		put_image_to_buff(data, IMG_SUICUNE_1, x, y);
+	else if (data->suicune_count % 8 == 1)
+		put_image_to_buff(data, IMG_SUICUNE_2, x, y);
+	else if (data->suicune_count % 8 == 2)
+		put_image_to_buff(data, IMG_SUICUNE_3, x, y);
+	else if (data->suicune_count % 8 == 3)
+		put_image_to_buff(data, IMG_SUICUNE_4, x, y);
+	else if (data->suicune_count % 8 == 4)
+		put_image_to_buff(data, IMG_SUICUNE_5, x, y);
+	else if (data->suicune_count % 8 == 5)
+		put_image_to_buff(data, IMG_SUICUNE_6, x, y);
+	else if (data->suicune_count % 8 == 6)
+		put_image_to_buff(data, IMG_SUICUNE_7, x, y);
+	else if (data->suicune_count % 8 == 7)
+		put_image_to_buff(data, IMG_SUICUNE_8, x, y);
+}
+
+void	put_images_to_buff(t_data *data, int x, int y)
+{
+	put_image_to_buff(data, IMG_TILE, x, y);
 	if (data->map_data.map[y][x] == '1')
-		mlx_put_image_to_window(data->mlx, data->win,
-			data->img_data[IMG_TREE].img, x * 64, y * 64);
-	if (data->map_data.map[y][x] == 'C')
-		mlx_put_image_to_window(data->mlx, data->win,
-			data->img_data[IMG_MONSTER_BALL].img, x * 64, y * 64);
-	if (data->map_data.map[y][x] == 'E')
-		put_suicune_to_window(data, x, y);
-	if (data->map_data.map[y][x] == 'P')
-		mlx_put_image_to_window(data->mlx, data->win,
-			data->img_data[IMG_PLAYER].img, x * 64, y * 64);
-	// if (data->map_data.map[y][x] == 'R')
-	// 	mlx_put_image_to_window(data->mlx, data->win,
-	// 		data->img[IMG_ENEMY], x * 64, y * 64);
-	// if (data->map_data.map[y][x] == 'L')
-	// 	mlx_put_image_to_window(data->mlx, data->win,
-	// 		data->img[IMG_LOSER], x * 64, y * 64);
+		put_image_to_buff(data, IMG_TREE, x, y);
+	else if (data->map_data.map[y][x] == 'C')
+		put_image_to_buff(data, IMG_MONSTER_BALL, x, y);
+	else if (data->map_data.map[y][x] == 'E')
+		put_suicune_to_buff(data, x, y);
+	else if (data->map_data.map[y][x] == 'P')
+		put_image_to_buff(data, IMG_PLAYER, x, y);
+	// else if (data->map_data.map[y][x] == 'R')
+	// 	put_image_to_buff(data, IMG_ENEMY, x, y);
+	// else if (data->map_data.map[y][x] == 'L')
+	// 	put_image_to_buff(data, IMG_LOSER, x, y);
 }
 
 void	refresh_display(t_data *data)
@@ -85,11 +116,12 @@ void	refresh_display(t_data *data)
 		x = 0;
 		while (x < data->map_data.x_count)
 		{
-			put_images_to_window(data, x, y);
+			put_images_to_buff(data, x, y);
 			x++;
 		}
 		y++;
 	}
+	mlx_put_image_to_window(data->mlx, data->win, data->buff_data.img, 0, 0);
 }
 
 int	loop_hook(t_data *data)
