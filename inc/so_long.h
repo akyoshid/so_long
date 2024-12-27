@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 15:24:44 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/27 00:52:02 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/27 01:02:28 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,8 @@ void			check_argc(int argc);
 void			check_file_ext(char *map_file);
 void			check_arg(int argc, char *map_file);
 // check_compo.c
-void			check_invalid_component(t_map *map_data, int *e_count, int *p_count);
+void			check_invalid_component(
+					t_map *map_data, int *e_count, int *p_count);
 void			check_component(t_map *map_data);
 // check_map.c
 void			check_rectangular(t_map *map_data);
@@ -115,7 +116,8 @@ void			free_img(t_data *data, int img_count);
 void			set_bytes_per_pixel(int *bytes_per_pixel, int bits_per_pixel);
 void			proc_mlx_get_data_addr(t_img *img_data);
 // map_utils.c
-void			proc_map_err(char **map_1, char **map_2, int err_code, void *param);
+void			proc_map_err(
+					char **map_1, char **map_2, int err_code, void *param);
 void			free_map(char **map);
 // open_map_file.c
 int				open_map_file(char *map_file);
@@ -136,8 +138,8 @@ void			proc_mlx_load_sprite(t_data *data);
 void			proc_mlx_new_window(t_data *data);
 // put_images_to_buff.c
 unsigned int	get_pixel_from_image(t_img *img_data, int x, int y);
-void			put_pixel_to_buff(
-					t_img *buff_data, int pixel_x, int pixel_y, unsigned int pixel);
+void			put_pixel_to_buff(t_img *buff_data,
+					int pixel_x, int pixel_y, unsigned int pixel);
 void			put_image_to_buff(t_data *data, int img_code, int x, int y);
 void			put_suicune_to_buff(t_data *data, int x, int y);
 void			put_images_to_buff(t_data *data, int x, int y);
