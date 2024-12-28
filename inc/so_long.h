@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 15:24:44 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/28 15:30:13 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/28 15:40:30 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,7 +167,8 @@ void			read_map_file(int fd, t_map *map_data);
 // refresh_display.c
 void			refresh_display(t_data *data);
 // refresh_map.c
-void			set_current_and_dst_tile(t_data *data, char **current, char **dst);
+void			set_current_and_dst_tile(
+					t_data *data, char **current, char **dst);
 int				check_tile_walkable(t_data *data, char *dst_tile);
 void			change_tile(t_data *data, char *current_tile, char *dst_tile);
 void			change_player_pos(t_data *data);
