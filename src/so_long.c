@@ -6,97 +6,61 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 09:16:59 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/27 21:10:32 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/28 15:09:07 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-# define KEY_ESC 65307
-# define KEY_W 119
-# define KEY_A 97
-# define KEY_S 115
-# define KEY_D 100
-# define KEY_X 120
-
-// int	check_tile_is_r(t_data *data)
-// {
-// 	if (data->map_data.map[data->map_data.p_y - 1][data->map_data.p_x] == 'R'
-// 		|| data->map_data.map[data->map_data.p_y][data->map_data.p_x - 1] == 'R'
-// 		|| data->map_data.map[data->map_data.p_y + 1][data->map_data.p_x] == 'R'
-// 		|| data->map_data.map[data->map_data.p_y][data->map_data.p_x + 1] == 'R'
-// 	)
-// 		return (1);
-// 	else
-// 		return (0);
-// }
-
-int	check_tile_is_0_c_l(t_data *data, char ch)
-{
-	if (ch == '0' || ch == 'C' || ch == 'L')
-		return (1);
-	else if (data->map_data.c_collected == data->map_data.c_count && ch == 'E')
-		return (1);
-	return (0);
-}
-
-int	check_tile(t_data *data)
-{
-	if (data->key == KEY_W && check_tile_is_0_c_l(data,
-			data->map_data.map[data->map_data.p_y - 1][data->map_data.p_x]))
-		return (1);
-	else if (data->key == KEY_A && check_tile_is_0_c_l(data,
-			data->map_data.map[data->map_data.p_y][data->map_data.p_x - 1]))
-		return (1);
-	else if (data->key == KEY_S && check_tile_is_0_c_l(data,
-			data->map_data.map[data->map_data.p_y + 1][data->map_data.p_x]))
-		return (1);
-	else if (data->key == KEY_D && check_tile_is_0_c_l(data,
-			data->map_data.map[data->map_data.p_y][data->map_data.p_x + 1]))
-		return (1);
-	// else if (data->key == KEY_X && check_tile_is_r(data))
-	// 	return (1);
-	return (0);
-}
-
-// void	attack_enemy()
-
 void	set_current_and_dst_tile(t_data *data, char **current, char **dst)
 {
-	if (data->key == KEY_W)
-	{
-		*current = &(data->map_data.map[data->map_data.p_y][data->map_data.p_x]);
-		*dst = &(data->map_data.map[data->map_data.p_y - 1][data->map_data.p_x]);
-	}
-	else if (data->key == KEY_A)
-	{
-		*current = &data->map_data.map[data->map_data.p_y][data->map_data.p_x];
+	*current = &(data->map_data.map[data->map_data.p_y][data->map_data.p_x]);
+	*dst = NULL;
+	if (data->key == KEY_W
+		|| (data->key == KEY_X
+			&& data->map_data.map[data->map_data.p_y - 1][data->map_data.p_x]
+		== 'R'))
+		*dst = &data->map_data.map[data->map_data.p_y - 1][data->map_data.p_x];
+	else if (data->key == KEY_A
+		|| (data->key == KEY_X
+			&& data->map_data.map[data->map_data.p_y][data->map_data.p_x - 1]
+		== 'R'))
 		*dst = &data->map_data.map[data->map_data.p_y][data->map_data.p_x - 1];
-	}
-	else if (data->key == KEY_S)
-	{
-		*current = &data->map_data.map[data->map_data.p_y][data->map_data.p_x];
+	else if (data->key == KEY_S
+		|| (data->key == KEY_X
+			&& data->map_data.map[data->map_data.p_y + 1][data->map_data.p_x]
+		== 'R'))
 		*dst = &data->map_data.map[data->map_data.p_y + 1][data->map_data.p_x];
-	}
-	else if (data->key == KEY_D)
-	{
-		*current = &data->map_data.map[data->map_data.p_y][data->map_data.p_x];
+	else if (data->key == KEY_D
+		|| (data->key == KEY_X
+			&& data->map_data.map[data->map_data.p_y][data->map_data.p_x + 1]
+		== 'R'))
 		*dst = &data->map_data.map[data->map_data.p_y][data->map_data.p_x + 1];
-	}
 }
 
-void	change_tile(t_data *data)
+int	check_tile_walkable(t_data *data, char *dst_tile)
 {
-	char	*current_tile;
-	char	*dst_tile;
+	if (*dst_tile == '0' || *dst_tile == 'C' || *dst_tile == 'L')
+		return (1);
+	else if (data->map_data.c_collected == data->map_data.c_count
+		&& *dst_tile == 'E')
+		return (1);
+	return (0);
+}
 
-	set_current_and_dst_tile(data, &current_tile, &dst_tile);
-	if (*dst_tile == 'C')
-		data->map_data.c_collected++;
-	else if (*dst_tile == 'E')
-		data->exit_flag = 1;
-	*dst_tile = 'P';
-	*current_tile = '0';
+void	change_tile(t_data *data, char *current_tile, char *dst_tile)
+{
+	if (data->key != KEY_X)
+	{
+		if (*dst_tile == 'C')
+			data->map_data.c_collected++;
+		else if (*dst_tile == 'E')
+			data->exit_flag = 1;
+		*dst_tile = 'P';
+		*current_tile = '0';
+	}
+	else
+		*dst_tile = 'L';
 }
 
 void	change_player_pos(t_data *data)
@@ -113,24 +77,31 @@ void	change_player_pos(t_data *data)
 
 void	refresh_map(t_data *data)
 {
-	if (check_tile(data) == 1)
+	char	*current_tile;
+	char	*dst_tile;
+
+	set_current_and_dst_tile(data, &current_tile, &dst_tile);
+	if (data->key != KEY_X && check_tile_walkable(data, dst_tile) == 1)
 	{
-		change_tile(data);
+		change_tile(data, current_tile, dst_tile);
 		change_player_pos(data);
 		data->move_count++;
 		ft_printf("number of movements: %u\n", data->move_count);
 	}
+	else if (data->key == KEY_X && dst_tile != NULL)
+		change_tile(data, current_tile, dst_tile);
 	data->key = 0;
 }
 
 void	refresh_display(t_data *data)
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
 	char	*move_count_str;
 
 	y = 0;
-	refresh_map(data);
+	if (data->key != 0)
+		refresh_map(data);
 	while (y < data->map_data.y_count)
 	{
 		x = 0;
@@ -141,8 +112,8 @@ void	refresh_display(t_data *data)
 		}
 		y++;
 	}
-	move_count_str = ft_itoa(data->move_count);
 	mlx_put_image_to_window(data->mlx, data->win, data->buff_data.img, 0, 0);
+	move_count_str = ft_itoa(data->move_count);
 	mlx_string_put(data->mlx, data->win, 24, 32, 0x00ffffff, move_count_str);
 	free(move_count_str);
 }
@@ -184,18 +155,18 @@ int	on_key_press(int key_code, t_data *data)
 		data->key = KEY_S;
 	else if (key_code == KEY_D)
 		data->key = KEY_D;
-	// else if (key_code == KEY_X)
-	// 	data->key = KY_X;
+	else if (key_code == KEY_X)
+		data->key = KEY_X;
 	return (0);
 }
 
 void	init_so_long(t_data *data)
 {
+	data->map_data.c_collected = 0;
 	data->loop_count = 0;
 	data->suicune_count = -1;
 	data->key = 0;
 	data->move_count = 0;
-	data->map_data.c_collected = 0;
 	data->exit_flag = 0;
 	refresh_display(data);
 }
