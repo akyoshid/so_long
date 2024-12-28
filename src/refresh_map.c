@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 15:23:03 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/28 15:23:48 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/28 21:11:27 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,16 @@ void	change_tile(t_data *data, char *current_tile, char *dst_tile)
 {
 	if (data->key != KEY_X)
 	{
-		if (*dst_tile == 'C')
-			data->map_data.c_collected++;
-		else if (*dst_tile == 'E')
-			data->exit_flag = 1;
-		*dst_tile = 'P';
+		if (*dst_tile == 'R')
+			data->game_over_flag = 1;
+		else
+		{
+			if (*dst_tile == 'C')
+				data->map_data.c_collected++;
+			else if (*dst_tile == 'E')
+				data->exit_flag = 1;
+			*dst_tile = 'P';
+		}
 		*current_tile = '0';
 	}
 	else
@@ -81,7 +86,8 @@ void	refresh_map(t_data *data)
 	char	*dst_tile;
 
 	set_current_and_dst_tile(data, &current_tile, &dst_tile);
-	if (data->key != KEY_X && check_tile_walkable(data, dst_tile) == 1)
+	if (data->key != KEY_X
+		&& (check_tile_walkable(data, dst_tile) == 1 || *dst_tile == 'R'))
 	{
 		change_tile(data, current_tile, dst_tile);
 		change_player_pos(data);

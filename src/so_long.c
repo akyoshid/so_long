@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 09:16:59 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/28 15:26:43 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/28 21:08:22 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	init_so_long(t_data *data)
 	data->key = 0;
 	data->move_count = 0;
 	data->exit_flag = 0;
+	data->game_over_flag = 0;
 	refresh_display(data);
 }
 

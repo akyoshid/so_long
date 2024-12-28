@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 15:26:32 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/28 15:27:03 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/28 21:27:38 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,9 @@ int	loop_hook(t_data *data)
 		}
 		refresh_display(data);
 		if (data->exit_flag == 1)
-		{
-			ft_printf("===============================\n");
-			ft_printf("||          \033[1;32mGOTCHA!\033[0m          ||\n");
-			ft_printf("||    \033[1;32mSuicune was caught!\033[0m    ||\n");
-			ft_printf("================================\n");
-			mlx_loop_end(data->mlx);
-		}
+			handle_exit_flag(data);
+		if (data->game_over_flag == 1)
+			handle_game_over_flag(data);
 	}
 	data->loop_count++;
 	return (0);
