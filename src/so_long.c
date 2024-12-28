@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 09:16:59 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/28 15:09:07 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/28 15:18:27 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	set_current_and_dst_tile(t_data *data, char **current, char **dst)
 {
-	*current = &(data->map_data.map[data->map_data.p_y][data->map_data.p_x]);
+	*current = &data->map_data.map[data->map_data.p_y][data->map_data.p_x];
 	*dst = NULL;
 	if (data->key == KEY_W
 		|| (data->key == KEY_X
