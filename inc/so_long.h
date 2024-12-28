@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 15:24:44 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/28 21:28:16 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/28 21:29:59 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,8 +123,8 @@ void			check_path_e_core(
 					t_map *map_data, char **map_cpy, int x, int y);
 void			check_path_e(t_map *map_data, char **map_cpy);
 // handle_flag.c
-void	handle_exit_flag(t_data *data);
-void	handle_game_over_flag(t_data *data);
+void			handle_exit_flag(t_data *data);
+void			handle_game_over_flag(t_data *data);
 // img_utils.c
 void			free_img(t_data *data, int img_count);
 void			set_bytes_per_pixel(int *bytes_per_pixel, int bits_per_pixel);
