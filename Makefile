@@ -19,7 +19,9 @@ SRC = \
 					$(SRC_DIR)check_path_c.c \
 					$(SRC_DIR)check_path_e.c \
 					$(SRC_DIR)img_utils.c \
+					$(SRC_DIR)loop_hook.c \
 					$(SRC_DIR)map_utils.c \
+					$(SRC_DIR)on_key_press.c \
 					$(SRC_DIR)open_map_file.c \
 					$(SRC_DIR)proc_err.c \
 					$(SRC_DIR)proc_mlx_buff_image.c \
@@ -29,7 +31,9 @@ SRC = \
 					$(SRC_DIR)proc_mlx_new_window.c \
 					$(SRC_DIR)put_images_to_buff.c \
 					$(SRC_DIR)quit_program.c \
-					$(SRC_DIR)read_map_file.c 
+					$(SRC_DIR)read_map_file.c \
+					$(SRC_DIR)refresh_display.c \
+					$(SRC_DIR)refresh_map.c
 MANDATORY_MAIN =	$(SRC_DIR)so_long.c
 BONUS_MAIN =		$(SRC_DIR)so_long_bonus.c
 

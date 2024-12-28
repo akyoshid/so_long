@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 15:24:44 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/28 15:09:21 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/28 15:30:13 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,10 +124,14 @@ void			check_path_e(t_map *map_data, char **map_cpy);
 void			free_img(t_data *data, int img_count);
 void			set_bytes_per_pixel(int *bytes_per_pixel, int bits_per_pixel);
 void			proc_mlx_get_data_addr(t_img *img_data);
+// loop_hook.c
+int				loop_hook(t_data *data);
 // map_utils.c
 void			proc_map_err(
 					char **map_1, char **map_2, int err_code, void *param);
 void			free_map(char **map);
+// on_key_press.c
+int				on_key_press(int key_code, t_data *data);
 // open_map_file.c
 int				open_map_file(char *map_file);
 // proc_err.c
@@ -160,5 +164,13 @@ void			cpy_old_map(char **dst, char **src, int n);
 char			**malloc_new_map(char **map, int line, int secured_line);
 void			close_map_file(int fd, t_map *map_data);
 void			read_map_file(int fd, t_map *map_data);
+// refresh_display.c
+void			refresh_display(t_data *data);
+// refresh_map.c
+void			set_current_and_dst_tile(t_data *data, char **current, char **dst);
+int				check_tile_walkable(t_data *data, char *dst_tile);
+void			change_tile(t_data *data, char *current_tile, char *dst_tile);
+void			change_player_pos(t_data *data);
+void			refresh_map(t_data *data);
 
 #endif
