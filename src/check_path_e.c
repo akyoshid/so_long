@@ -6,19 +6,18 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:45:52 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/24 16:01:06 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/28 20:43:23 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-int	check_tile_e(char **map_cpy, int x, int y, int *count)
+int	check_tile_e(char **map_cpy, int x, int y)
 {
 	if (map_cpy[y][x] == 'E')
 	{
 		map_cpy[y][x] = 'v';
-		(*count)++;
-		return (0);
+		return (2);
 	}
 	if (map_cpy[y][x] == 'V')
 	{
@@ -28,25 +27,39 @@ int	check_tile_e(char **map_cpy, int x, int y, int *count)
 	return (0);
 }
 
-void	check_path_e_core(char **map_cpy, int y, int x, int *count)
+void	check_path_e_core(t_map *map_data, char **map_cpy, int x, int y)
 {
-	if (check_tile_e(map_cpy, y - 1, x, count) == 1)
-		check_path_e_core(map_cpy, y - 1, x, count);
-	if (check_tile_e(map_cpy, y + 1, x, count) == 1)
-		check_path_e_core(map_cpy, y + 1, x, count);
-	if (check_tile_e(map_cpy, y, x - 1, count) == 1)
-		check_path_e_core(map_cpy, y, x - 1, count);
-	if (check_tile_e(map_cpy, y, x + 1, count) == 1)
-		check_path_e_core(map_cpy, y, x + 1, count);
+	int	w;
+	int	a;
+	int	s;
+	int	d;
+
+	w = check_tile_e(map_cpy, x, y - 1);
+	a = check_tile_e(map_cpy, x - 1, y);
+	s = check_tile_e(map_cpy, x, y + 1);
+	d = check_tile_e(map_cpy, x + 1, y);
+	if (w == 2 || a == 2 || s == 2 || d == 2)
+	{
+		map_data->r_x = x;
+		map_data->r_y = y;
+	}
+	if (w == 1)
+		check_path_e_core(map_data, map_cpy, x, y - 1);
+	if (a == 1)
+		check_path_e_core(map_data, map_cpy, x - 1, y);
+	if (s == 1)
+		check_path_e_core(map_data, map_cpy, x, y + 1);
+	if (d == 1)
+		check_path_e_core(map_data, map_cpy, x + 1, y);
 }
 
 void	check_path_e(t_map *map_data, char **map_cpy)
 {
-	int	count;
-
-	count = 0;
-	check_path_e_core(map_cpy, map_data->p_y, map_data->p_x, &count);
-	if (count != 1)
+	map_data->r_x = 0;
+	map_data->r_y = 0;
+	check_path_e_core(map_data, map_cpy, map_data->p_x, map_data->p_y);
+	if (map_data->r_x == 0 && map_data->r_y == 0)
 		proc_map_err(map_data->map, map_cpy, SL_ERR_PARAM,
 			"check_map: There is no valid path to an exit\n");
+	map_data->map[map_data->r_y][map_data->r_x] = 'R';
 }

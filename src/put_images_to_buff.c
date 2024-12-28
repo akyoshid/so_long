@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 00:45:10 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/27 00:48:12 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/28 20:43:52 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ void	put_images_to_buff(t_data *data, int x, int y)
 		put_suicune_to_buff(data, x, y);
 	else if (data->map_data.map[y][x] == 'P')
 		put_image_to_buff(data, IMG_PLAYER, x, y);
-	// else if (data->map_data.map[y][x] == 'R')
-	// 	put_image_to_buff(data, IMG_ENEMY, x, y);
-	// else if (data->map_data.map[y][x] == 'L')
-	// 	put_image_to_buff(data, IMG_LOSER, x, y);
+	else if (data->map_data.map[y][x] == 'R')
+		put_image_to_buff(data, IMG_ENEMY, x, y);
+	else if (data->map_data.map[y][x] == 'L')
+		put_image_to_buff(data, IMG_LOSER, x, y);
 }

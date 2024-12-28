@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 15:24:44 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/28 15:40:30 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/28 20:40:07 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,11 +114,11 @@ char			**cpy_map(t_map *map_data);
 void			check_map(t_map *map_data);
 // check_path_c.c
 int				check_tile_c(char **map_cpy, int x, int y, int *count);
-void			check_path_c_core(char **map_cpy, int y, int x, int *count);
+void			check_path_c_core(char **map_cpy, int x, int y, int *count);
 void			check_path_c(t_map *map_data, char **map_cpy);
 // check_path_e.c
-int				check_tile_e(char **map_cpy, int x, int y, int *count);
-void			check_path_e_core(char **map_cpy, int y, int x, int *count);
+int				check_tile_e(char **map_cpy, int x, int y);
+void			check_path_e_core(t_map *map_data, char **map_cpy, int x, int y);
 void			check_path_e(t_map *map_data, char **map_cpy);
 // img_utils.c
 void			free_img(t_data *data, int img_count);
