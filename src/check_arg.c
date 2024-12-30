@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 06:37:47 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/25 07:23:43 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/31 03:32:08 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	check_argc(int argc)
 {
 	if (argc != 2)
-		proc_err(SL_ERR_PARAM, 
+		proc_err(SL_ERR_PARAM,
 			"check_argc: Invalid number of arguments: Expected 2 arguments\n");
 }
 

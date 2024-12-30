@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 09:49:37 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/30 17:56:09 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/31 03:29:58 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	check_size(t_map *map_data)
 {
 	if (map_data->x_count > 60 || map_data->y_count > 32)
 		proc_map_err(map_data->map, NULL, SL_ERR_PARAM,
-			"check_map: The map is too big: Maximum size is 32 (height) and 60 (width)\n");
+			"check_map: The map is too big: "
+			"Maximum size is 32 (height) and 60 (width)\n");
 }
 
 void	check_rectangular(t_map *map_data)
