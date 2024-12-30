@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 15:26:32 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/30 11:12:07 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/31 01:10:59 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 int	loop_hook(t_data *data)
 {
-	if (data->loop_count % (256 * 2) == 0)
+	if (data->loop_count % (256 * 8) == 0)
 	{
-		if (data->loop_count % (256 * 16) == 0)
+		if (data->loop_count % (256 * 64) == 0)
 			data->suicune_count++;
-		if (data->loop_count % (256 * 32) == 0)
+		if (data->loop_count % (256 * 128) == 0)
 		{
 			if (data->exit_flag == 2 || data->game_over_flag == 2)
 				mlx_loop_end(data->mlx);
