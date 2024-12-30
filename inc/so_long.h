@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 15:24:44 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/28 21:29:59 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/30 09:45:51 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,15 @@
 # define KEY_S 115
 # define KEY_D 100
 # define KEY_X 120
+
+# define INDEX_W 0
+# define INDEX_A 1
+# define INDEX_S 2
+# define INDEX_D 3
+
+# define RAND_ERR_OPEN 1
+# define RAND_ERR_READ 2
+# define RAND_ERR_CLOSE 3
 
 typedef struct s_img
 {
@@ -122,6 +131,9 @@ int				check_tile_e(char **map_cpy, int x, int y);
 void			check_path_e_core(
 					t_map *map_data, char **map_cpy, int x, int y);
 void			check_path_e(t_map *map_data, char **map_cpy);
+// ft_rand_256.c
+int				ft_rand_256(void);
+void			proc_rand_err(t_data *data, int rand);
 // handle_flag.c
 void			handle_exit_flag(t_data *data);
 void			handle_game_over_flag(t_data *data);
@@ -135,6 +147,16 @@ int				loop_hook(t_data *data);
 void			proc_map_err(
 					char **map_1, char **map_2, int err_code, void *param);
 void			free_map(char **map);
+// move_enemy_utils.c
+void			set_enemy_dst_tile(t_data *data, char (*dst_tile)[4]);
+void			eliminate_player(t_data *data, char *dst_tile);
+int				count_enemy_walkable_tile(char *dst_tile);
+int				ft_rand_256(void);
+void			choose_enemy_dst_tile(
+					t_data *data, char *dst_tile, int count, int rand);
+// move_enemy.c
+void			move_enemy_core(t_data *data, int index_code);
+void			move_enemy(t_data *data);
 // on_key_press.c
 int				on_key_press(int key_code, t_data *data);
 // open_map_file.c

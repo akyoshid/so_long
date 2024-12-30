@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 15:24:56 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/28 15:25:13 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/29 15:19:57 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	refresh_display(t_data *data)
 	char	*move_count_str;
 
 	y = 0;
-	if (data->key != 0)
+	if (data->key != 0 && data->game_over_flag == 0)
 		refresh_map(data);
 	while (y < data->map_data.y_count)
 	{
