@@ -7,6 +7,7 @@ INC_DIR =	inc/
 SRC_DIR =	src/
 OBJ_DIR =	obj/
 LIBFT_DIR =	libft/
+MLX_DIR =	minilibx-linux/
 
 # Header files
 INC =				$(INC_DIR)so_long.h
@@ -69,11 +70,13 @@ bonus:
 	@make $(BONUS_NAME) BONUS=1
 
 $(NAME): $(OBJ)
-	@make libft.a -C $(LIBFT_DIR)
+	@make -C $(LIBFT_DIR)
+	@make -C $(MLX_DIR)
 	$(CC) $(CFLAGS) $(OBJ) -I$(INC_DIR) -o $@ $(LIBFT_LIB) $(MLX_LIB)
 
 $(BONUS_NAME): $(OBJ)
-	@make libft.a -C $(LIBFT_DIR)
+	@make -C $(LIBFT_DIR)
+	@make -C $(MLX_DIR)
 	$(CC) $(CFLAGS) $(OBJ) -I$(INC_DIR) -o $@ $(LIBFT_LIB) $(MLX_LIB)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INC)
@@ -83,6 +86,7 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INC)
 clean:
 	$(RM) -r $(OBJ_DIR)
 	@make clean -C $(LIBFT_DIR)
+	@make clean -C $(MLX_DIR)
 
 fclean: clean
 	$(RM) $(NAME) $(BONUS_NAME)
