@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 15:24:44 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/30 09:45:51 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/30 11:02:42 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,8 @@ typedef struct s_data
 	unsigned char	suicune_count;
 	int				key;
 	unsigned int	move_count;
-	bool			exit_flag;
-	bool			game_over_flag;
+	int				exit_flag;
+	int				game_over_flag;
 }			t_data;
 
 // check_arg.c
