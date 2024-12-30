@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 09:49:37 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/30 12:45:20 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/30 12:52:53 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ void	check_rectangular(t_map *map_data)
 		if (map_data->map[i + 1] == NULL)
 		{
 			if (!((map_data->x_count == (int)ft_strlen(map_data->map[i]) - 1
-				&& map_data->map[i][map_data->x_count] == '\n')
+					&& map_data->map[i][map_data->x_count] == '\n')
 				|| (map_data->x_count == (int)ft_strlen(map_data->map[i])
-				&& map_data->map[i][map_data->x_count - 1] != '\n')))
-				{
-					proc_map_err(map_data->map, NULL, SL_ERR_PARAM,
-						"check_map: The map is not rectangular\n");
-				}
+					&& map_data->map[i][map_data->x_count - 1] != '\n')))
+			{
+				proc_map_err(map_data->map, NULL, SL_ERR_PARAM,
+					"check_map: The map is not rectangular\n");
+			}
 		}
 		else
 		{
