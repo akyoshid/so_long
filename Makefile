@@ -56,7 +56,7 @@ endif
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 LIBFT_LIB = -L ./libft -lft
-MLX_LIB = -lmlx_Linux -lXext -lX11
+MLX_LIB = -L ./minilibx-linux -lmlx_Linux -lXext -lX11
 
 # Commands
 RM = rm -f

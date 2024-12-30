@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 15:24:44 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/30 11:02:42 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/31 00:29:16 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <stdbool.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
-# include <mlx.h>
+# include "../minilibx-linux/mlx.h"
 # include "../libft/inc/libft.h"
 # include "../libft/inc/ft_printf.h"
 # include "../libft/inc/get_next_line_bonus.h"
