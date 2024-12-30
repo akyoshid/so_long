@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 21:27:14 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/28 21:27:27 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/30 08:35:01 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	handle_game_over_flag(t_data *data)
 {
 	ft_printf("===============================\n");
 	ft_printf("||         \033[1;31mGAME OVER\033[0m         ||\n");
+	ft_printf("|| \033[1;31mEliminated by Team Rocket\033[0m ||\n");
 	ft_printf("===============================\n");
 	mlx_loop_end(data->mlx);
 }
