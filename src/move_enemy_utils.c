@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 09:11:02 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/30 09:34:10 by akyoshid         ###   ########.fr       */
+/*   Updated: 2024/12/30 10:50:20 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	eliminate_player(t_data *data, char *dst_tile)
 
 int	count_enemy_walkable_tile(char *dst_tile)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	if (dst_tile[INDEX_W] == '0')
