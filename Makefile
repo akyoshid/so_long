@@ -40,7 +40,7 @@ SRC = \
 					$(SRC_DIR)refresh_display.c \
 					$(SRC_DIR)refresh_map.c
 MANDATORY_MAIN =	$(SRC_DIR)so_long.c
-BONUS_MAIN =		$(SRC_DIR)so_long.c
+BONUS_MAIN =		$(SRC_DIR)so_long_bonus.c
 
 # Generate the list of object files in OBJ_DIR from source files in SRC_DIR
 OBJ =				$(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRC))
