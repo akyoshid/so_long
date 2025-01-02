@@ -6,7 +6,7 @@
 /*   By: akyoshid <akyoshid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 15:24:44 by akyoshid          #+#    #+#             */
-/*   Updated: 2024/12/31 00:29:16 by akyoshid         ###   ########.fr       */
+/*   Updated: 2025/01/02 19:55:42 by akyoshid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ typedef struct s_map
 	int		y_count;
 	int		c_count;
 	int		c_collected;
+	int		e_count;
 	int		p_x;
 	int		p_y;
 	int		r_x;
@@ -127,7 +128,9 @@ int				check_tile_c(char **map_cpy, int x, int y, int *count);
 void			check_path_c_core(char **map_cpy, int x, int y, int *count);
 void			check_path_c(t_map *map_data, char **map_cpy);
 // check_path_e.c
-int				check_tile_e(char **map_cpy, int x, int y);
+void			set_enemy_pos(t_map *map_data, int x, int y);
+void			check_enemy_pos(t_map *map_data, char **map_cpy, int x, int y);
+int				check_tile_e(t_map *map_data, char **map_cpy, int x, int y);
 void			check_path_e_core(
 					t_map *map_data, char **map_cpy, int x, int y);
 void			check_path_e(t_map *map_data, char **map_cpy);
